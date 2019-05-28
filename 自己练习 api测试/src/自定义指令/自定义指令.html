@@ -10,6 +10,7 @@
 <body>
     <div id="demo1">
         <h2>测试 自定义全局指令v-focus当页面加载就在输入框聚焦</h2>
+        <p>第一种全局定义 在vue对象内定义指令</p>
         <input type="text" v-focus>
     </div>
     <script>
@@ -25,7 +26,7 @@
     <p>----------------------------------------------</p>
     <div id="demo2">
             <h2>测试 自定义全局指令v-focus当页面加载就在输入框聚焦</h2>
-            <p>第二种写法 在vue对象内定义</p>
+            <p>第二种局部定义 在vue对象内定义指令</p>
             <input type="text" id="heihie" v-newfocus>
         </div>
         <script>
@@ -97,7 +98,29 @@
       }
     })
     </script>
-    
-
+    <p>----------------------------------------------</p>
+    <div id="demo3">
+        <p v-upper-text="msg1"></p>
+        <p v-lower-text="msg2"></p>
+    </div>
+    <script>
+        new Vue({
+            el:'#demo3',
+            data:{
+                msg1:'QWEQWEQWEQWEQWE',
+                msg2:'sdfdsfdsfdsfsdfdf'
+            },
+            directives:{
+                'upper-text':function(el,binding){
+                    el.textContent=binding.value.toLowerCase();
+                    console.info(binding);
+                },
+                'lower-text':function(el,binding){
+                    el.textContent=binding.value.toUpperCase();
+                }
+            }
+        })
+        
+    </script>
 </body>
 </html>

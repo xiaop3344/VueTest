@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../lib/vue.js"></script>
+    <script src="./vue-myPlugin.js"></script>
+    
+</head>
+<body>
+    <div id="demo">
+        <p v-my-directive='msg'></p>
+    </div>
+    <script>
+        //声明使用插件
+        //使用的时候必须与要写的方法 放在一起
+        Vue.use(MyPlugin);  //内部会执行MyPlugin.install(Vue)
+
+        Vue.myGlobalMethod();
+        var vm=new Vue({
+            el:'#demo',
+            data:{
+                msg:'I LIKE YOU'
+            }
+        })
+        vm.$myMethod();
+    </script>
+</body>
+</html>
