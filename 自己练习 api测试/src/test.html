@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lib/vue.js"></script>
+</head>
+<body>
+        <a href="https://www.baidu.com">百度</a>
+    <div id="test1">
+    <input type="text" v-model="message">
+    <p>{{message}}</p>
+    </div>
+    
+    <script>
+    var vm=new Vue({
+        el:"#test1",
+        data:{
+            message:"hello world"
+        }
+    })
+    vm.message="haha";
+    </script>
+    <br>
+    <br>
+    <div id="vhtml">
+        <p v-html="msg"></p>
+        <button v-on:click="test2('haha')">点击</button>
+    </div>
+    <script>
+        new Vue({
+            el:'#vhtml',
+            data:{
+                msg:'<a href="www.baidu.com">百度</a>'
+            },
+            methods: {
+                test2(text){
+                    alert(text);
+                }
+            },
+        })
+    </script>
+    <br>
+    <br>
+
+    <div id="demo">
+        姓：<input type="text" v-model="firstname"><br>
+        名：<input v-model="lastname"><br>
+        姓名1：<p>{{fullname}}</p>
+        姓名2：<p>{{fullname1}}</p>
+        双向姓名：<input v-model="fullname3">
+    </div>
+    <script>
+        var vm=new Vue({
+            el:'#demo',
+            data:{
+                firstname:'a',
+                lastname:'b',
+                fullname1:''
+            },
+            computed: {
+                fullname(){
+                    return this.firstname+"  "+this.lastname;
+                },
+                fullname3:{
+                    get(){
+                        return this.firstname+"   "+this.lastname;
+                    },
+                    set(value){
+                        var name=value.split("  ");
+                        this.firstname=name[0];
+                        this.lastname=name[1];
+                    }
+                }
+            },
+            watch: {
+                firstname:function(newvalue,oldvalue){
+                    console.log('原来的姓'+oldvalue+'发生了改变，改为了'+newvalue);
+                    this.fullname1=newvalue+"    "+this.lastname;
+                }
+            }
+        })
+
+        vm.$watch("lastname", function(newvalue,oldvalue){
+            console.log('原来的名'+oldvalue+'发生了改变，改为了'+newvalue);
+            this.fullname1=this.firstname+"    "+newvalue;
+        })
+    </script>
+    <br>
+    <br>
+    <h1>style与class 绑定</h1>
+    <style>
+    .old{
+        color: aqua;
+    }
+    .new{
+        color: blueviolet;
+    }
+    .oldfont{
+        font-size: 40px;
+    }
+    .newfont{
+        font-size: 20px;
+    }
+    </style>
+    <div id="classtest">
+        <h2>1.class 绑定  :class= </h2>
+        <p :class="a">测试用文字</p>
+        <p  :class="[a,oldfont]">测试用文字2</p>
+        <p class="oldfont" :class="{old:isa,new:isb}">:class 绑定对象</p>
+        <button @click="clicktest">点击切换</button>
+        <br><br>
+        <p :style="{color:oldcolor,fontSize:font+'px'}">绑定style</p>
+    </div>
+    <script>
+    new Vue({
+        el:'#classtest',
+        data:{
+            a:'old',
+            isa:true,
+            isb:false,
+            oldfont:"oldfont",
+            oldcolor:"red",
+            font:"30"
+        },
+        methods:{
+            clicktest(){
+                this.a='new';
+                if(this.isa==true){
+                    this.isa=false;
+                    this.isb=true;
+                }
+                else{
+                    this.isa=true;
+                    this.isb=false;
+                }
+                this.oldcolor="blue";
+                this.font="90";
+
+                
+            }
+        }
+    })
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="/lib/vue.js"></script>
+</head>
+<body>
+    <div id="demo">
+        遍历数组
+        <ul>
+            <li v-for="(p, index) in persons" :key="index">
+                {{index}}-----{{p.name}}-----{{p.age}}-----<button @click="deleteP(index)">删除</button>
+                <button @click="updedp(index)">变大写</button>
+            </li>
+        </ul>
+         遍历对象 
+        <ul>
+            <li v-for="(item, index) in persons[0]" :key="index">
+                {{item}}---{{index}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el:"#demo",
+            data:{
+                persons:[
+                    {name:"xiaop",age:18},
+                    {name:'xjy',age:12}
+                ]
+            },
+            methods: {
+                deleteP(index){
+                    this.persons.splice(index,1);
+                },
+                updedp(index){
+                    console.log(this.persons[index].name.toUpperCase());
+                    this.persons[index].name=this.persons[index].name.toUpperCase();
+                    var newp=this.persons[index]
+                    /* 想要实现实时更改 必须用splice进行先删除后添加新对象的形式 */
+                    this.persons.splice(index,1,newp);
+                    
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="/lib/vue.js"></script>
+</head>
+<body>
+    <div id="demo">
+        <form action="/xxx" @submit.prevent='handleSubmit'>
+
+        <span>用户名:</span>
+        <input type="text" v-model="name"><br><br>
+
+        <span>密码:</span>
+        <input type="text" v-model="password"><br><br>
+            如果想默认显示 直接在vmodel中 设定好值就可以了<br>
+        <span>性别:</span>
+        <input type="radio" id="female" value="女" v-model="sex">
+        
+        <label for="female">女</label>
+        <input type="radio"  id="male" value="男" v-model="sex">
+        <label for="male">男</label>
+        <br>
+        <br>
+        <span>爱好:</span>
+        <input type="checkbox" v-model="like" id="baskball" value="baskball">
+        <label for="baskball">篮球</label>
+        <input type="checkbox" v-model="like" id="football" value="football">
+        <label for="football">足球</label>
+        <input type="checkbox" v-model="like" id="computer" value="computer">
+        <label for="computer">电脑</label>
+        <input type="checkbox" v-model="like" id="music" value="music">
+        <label for="music">听歌</label>
+        <br>
+        <br>
+        <span>城市</span>
+        <select v-model="cityid">
+            <option value="">未选择</option>
+            <option :value="city.id" v-for="(city, index) in allcity" :key="index">
+                {{city.name}}
+            </option>
+        </select>
+        <br>
+        <br>
+        <textarea name="" id="" cols="30" rows="10" v-model="textvalue"></textarea>
+        <br>
+        <br>
+        <br>
+        <input type="submit" value="提交">
+        </form>
+    </div>
+    <script>
+        new Vue({
+            el:'#demo',
+            data:{
+                name:'',
+                password:'',
+                sex:'女',
+                like:["baskball",'computer'],
+                cityid:2,
+                allcity:[{id:1,name:"青岛"},{id:2,name:"大连"},{id:3,name:'鞍山'}],
+                textvalue:''
+            },
+            methods: {
+                handleSubmit(){
+                    console.info(this.name+"----"+this.password);
+                    console.info(this.name+this.password+this.sex,this.like,this.cityid+this.textvalue);
+                }   
+            }
+        })
+    </script>
+</body>
+</html>

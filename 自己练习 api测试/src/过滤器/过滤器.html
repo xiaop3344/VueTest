@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="/lib/vue.js"></script>
+    <script src="https://cdn.bootcss.com/moment.js/2.24.0/moment.min.js"></script>
+</head>
+<body>
+    <div id="demo">
+        <h2>显示格式化的日期时间</h2>
+        <p>{{time}}</p>
+        <p>完整版:{{time|dataStr('YYYY-MM-DD HH:mm:ss')}}</p>
+    </div>
+    <script>
+        /* 自定义过滤器
+        value 就是传入的time
+        format 就是方法括号内传入的变量
+        */
+        Vue.filter('dataStr',function(value,format){
+            return moment(value).format(format)
+        });
+        new Vue({
+            el:'#demo',
+            data:{
+                time:new Date()
+            }
+        })
+    </script>
+
+
+
+    
+</body>
+</html>
