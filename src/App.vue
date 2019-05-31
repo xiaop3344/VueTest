@@ -1,7 +1,9 @@
 <template>
     <div>
         <h1>评论区</h1>
+        <!-- 将添加方法传入子组件 -->
         <Add :addComments="addComments"/>
+        <!-- 将comments对象 和删除方法传入子组件 -->
         <List :comments="comments" :deleteComment='deleteComment'/>
     </div>
 </template>
@@ -29,12 +31,14 @@ export default {
     },
     methods:{
         addComments(comment){
+            // 在首行添加
             this.comments.unshift(comment);
         },
         deleteComment(index){
             this.comments.splice(index,1);
         }
     },
+    // 必须要引入import的的组件
     components:{
         Add,
         List

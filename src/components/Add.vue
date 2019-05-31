@@ -7,11 +7,12 @@
         <input type="text" v-model="content">
         <br>
         <br>
-        <button @click="add">添加</button>
+        <el-button type="primary" plain @click="add">添加</el-button>
     </div>
 </template>
 <script>
 export default {
+    // 接收父组件传来的值
     props:{
         addComments:{
             type:Function,

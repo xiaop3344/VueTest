@@ -3,7 +3,7 @@
         <li>
             <p>{{comment.name}}:</p>
             <p>{{comment.content}}</p>
-            <button @click='deleteitem'>删除</button>
+            <el-button @click='deleteitem'>删除</el-button>
             <p>----------------------------</p>
         </li>
     </div>
