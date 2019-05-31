@@ -2,12 +2,12 @@
     <div>
         <h2>添加评论</h2>
         <p>名字:</p>
-        <input type="text" v-model="name">
+        <el-input type="text" v-model="name" suffix-icon="el-icon-circle-check"></el-input>
         <p>评论内容</p>
-        <input type="text" v-model="content">
+        <el-input type="text" style="width:222px" v-model="content"/>
         <br>
         <br>
-        <el-button type="primary" plain @click="add">添加</el-button>
+        <el-button type="primary"  plain @click="add">添加</el-button>
     </div>
 </template>
 <script>
