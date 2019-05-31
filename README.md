@@ -9,3 +9,4 @@ config/index.js
 修改为assetsPublicPath: './'
 部署Tomcat
 
+https://blog.csdn.net/haochuan9421/article/details/81975966
