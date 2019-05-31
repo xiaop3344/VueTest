@@ -7,12 +7,21 @@
         <el-input type="text" style="width:222px" v-model="content"/>
         <br>
         <br>
+        <UE :defaultMsg='defaultMsg' ref="ue"/>
+        <br><br>
+        <el-button type="primary"  plain @click="getUEContent">添加富文本</el-button>
+        <br><br>
+        <p>刚刚添加的内容:</p>
+        <div v-html="uemsg"></div>
+        <br><br>
         <el-button type="primary"  plain @click="add">添加</el-button>
     </div>
 </template>
 <script>
+import UE from './UE.vue';
 export default {
     // 接收父组件传来的值
+    components:{UE},
     props:{
         addComments:{
             type:Function,
@@ -22,7 +31,9 @@ export default {
     data(){
             return {
                 name:'',
-                content:''
+                content:'',
+                defaultMsg:'请添加输入!',
+                uemsg:''
             }
         },
     methods:{
@@ -36,7 +47,12 @@ export default {
             this.addComments(comment);
             this.name=''
             this.content=''
-        }
+        },
+        getUEContent() {
+        let content = this.$refs.ue.getUEContent();
+        this.uemsg=content;
+        console.log(content)
+      }
     }
 }
 </script>
